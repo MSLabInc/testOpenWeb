@@ -1,0 +1,530 @@
+.. sectionauthor:: Moto_yasu Kinoshita <www.butsuri.net>
+
+
+=====================
+Template of rst
+=====================
+
+.. contents:: 
+
+`スライドを作るための表 <making_slide_w_comments>`_
+
+
+
+文字を大きくしたい、色をつけたい
+===================================
+
+.. raw:: html
+
+   <span style="font-size: 16px;">これは16pxのテキストです。</span>
+   <span style="font-size: 20px;">これは20pxのテキストです。</span>
+
+.. raw:: html
+
+   <span style="color: red;">赤いテキストです。</span>
+   <span style="color: blue;">青いテキストです。</span>
+
+例題（フォルスコート）
+-----------------------
+
+file:///Users/moto/Library/Mobile%20Documents/com~apple~CloudDocs/B/B1/Sphinx/2022_rST/%E3%81%97%E3%81%93%E3%82%99%E3%81%A8%E3%81%97%E3%81%93%E3%82%99%E3%81%A8%E3%81%97%E3%81%93%E3%82%99%E3%81%A8/%E3%83%95%E3%82%A9%E3%83%AB%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%88TOP_230614/index.rst
+
+
+
+------------------------
+文書を参照したい
+------------------------
+
+`xxx <xxx>`_  
+
+:doc:`xxx <xxx>`  (OBS! :との間に空白をあけてはいけない)
+      (<xxx>の前には空白をあける)
+      
+
+("_" を右端につけると<xxx>が有効になる)
+`GoogleスタイルのPython Docstringの入門 <https://qiita.com/11ohina017/items/118b3b42b612e527dc1d>`_
+
+
+確認要
+:doc:"これ（pyhtonでの チョンチョンquotation を使う）でもOK！ <file:///Users/moto/Documents/B/TAGTBL/Schedule/Diary/2305/230509.html>"
+
+----------------------------------------------------
+リンクを張りたい、参照 (Internal Hyperlink) したい
+----------------------------------------------------
+
+ref を使うと任意のテキストが使える
+-----------------------------------------------
+
+うまく言った例は以下、（:ref:は見えなくなる。右端の _ はいらない）
+
+tag1 :ref:`機械式駐車場マター<parking_230516>` 
+
+toctree でつないでいるときは、ファイル名をつける
+
+:ref:`my_label <./document-name#my_label>`
+
+
+ラベル、以下に対して、
+
+.. _my_label:
+
+このラベルは、同じドキュメント内の他の場所から参照できます。他のドキュメントから参照する場合は、ドキュメント名も含める必要があります。 （ **セミコロン** なんだ・・・ ）
+
+tag1 :ref:`my_label <document-name:my_label>`
+
+または、toctreeでつないだドキュメントの場合、次のように参照することができます。
+
+tag2 :ref:`my_label <./document-name#my_label>`
+
+
+
+以下のように参照される方にタグを書いておく（旗を立てておく）：
+
+.. _sample-tag:
+
+上記の、参照は :ref:`sample-tag` としても参照できる
+（OBS! 右端の _ は要らない OBS!、 :dpc:では _ をつけるの？？）
+
+:ref:`ほげほげ<sample-tag>` として任意のテキストでも参照できます。
+
+同じことだが（その１）
+
+.. _ref-memo-01:
+
+上記を参照するのに、
+:ref:`参照メモ<ref-memo-01>`  でもうまくいくはず（確認要）
+
+
+同じことだが（その２）
+
+`スペースを 含む文字列`_ と書いておいて、
+   あとから 
+   \.\. \_`スペースを 含む文字列`: ほげほげ（ほげほげは関係ない）
+
+   （まだ勉強中＝＝＞  \.\. \     ）
+
+
+
+基本は以下のように書く
+-------------------------
+
+*  Sphinx-users.jp_
+
+.. _Sphinx-users.jp: http://sphinx-users.jp/
+
+
+
+URLを参照するには
+---------------------
+
+1. 普通にURLを書くと自動でリンクになる（飛ぶ入口になる）。
+
+2. `文字列 <URL>`_ とするとリンクになる。
+
+
+以下のように書いても良い：
+
+.. _`スペースを 含む文字列`: http://localhost/
+
+たとえば
+
+   *  http://sphinx-doc.org/
+   * `github <https://github.com>`_  これで、長たらしいアドレスの記述は表に出こない？　確認要
+
+
+
+脚注
+----------
+
+（カギカッコで囲むと、`` で囲むのと同じ効果があるのでは？）
+
+1. それをデータベースとして [1]_  。  
+
+.. [1] Thread／スレッドでは。。。。。
+
+
+参照、ドキュメント（doc）
+----------------------------
+
+`xxx <xxx>`_
+（ < の これの前にはブランクがないといけない ）
+
+`Duwi_python_230620 <../../Duwi_python_230620/pemanasan.py>`_
+
+`GNDが導通 {221002}=別のrstファイル、 <file:///Users/moto/Library/Mobile%20Documents/com~apple~CloudDocs/B/B1/Sphinx/2022_rST/%E3%81%97%E3%81%93%E3%82%99%E3%81%A8%E3%81%97%E3%81%93%E3%82%99%E3%81%A8%E3%81%97%E3%81%93%E3%82%99%E3%81%A8/SN1_heat_up_indeXrST-220519/Auto_RasPi_Operation_%E8%87%AA%E5%8B%95%E9%81%8B%E8%BB%A2_%E3%82%B9%E3%83%AC%E3%83%83%E3%83%88%E3%82%99_20526/B1/GNDing_220930/index.rst>`_
+
+`filename\ <path/to/ファイル名>`
+                ../../ 
+
+htmlの場所dirからindex.rtの場所dirにもどすには、以下のように、../../ をつける、
+     `伝導性プラズマを電気化学での電極。。。 <file:../../energies-15-07508-v2.pdf>`_
+     
+     `熊井 真次 <file:../../Kumai_90-1-kumai.pdf>`_
+
+pdfは、自動で開いてくれる
+.. /社会実装_220918/理研ワールド_sabae/nr6r_230122/_build/html/Kumai_90-1-kumai.pdf
+   /nr6r_230122/に pdfファイルが有るときは、そこまで、htmlのあるdirから戻らないと参照できない
+
+
+
+ページ内の目次は以下のように書きます
+========================================
+
+.. contents::
+     :local:           #確認要
+
+目次１
+-------
+
+その１の内容
+
+目次２
+-------
+
+その２の内容
+
+目次３
+-------
+
+その３の内容
+
+* より上位の目次、見出しがくると、そこで目次のセクションが終了するのでは？
+
+ここで、ローカルなは終了する、のでは？　（確認要） {220610}
+
+
+* 1
+
+
+テーブル、表（その１）
+=========================
+
+ここが重要だ！ という文章は強調したいと思います。
+
+強調を行うには、以下のように書いていきます。
+
+======== =========== ============ =========
+種類     使用例      書き方       HTMLタグ
+======== =========== ============ =========
+強調     *文字列*    \*で囲む     <em>
+強い強調 **文字列**  \*\*で囲む   <strong>
+======== =========== ============ =========
+
+|
+
++------------+------------+-----------+------------+-----------+
+| Header 1   | Header 2   | Header 3  | Header 1   | Header 3  |
++============+============+===========+============+===========+
+| body row 1 | column 2   | column 3  | body row 1 | column 3  |
++------------+------------+-----------+------------+-----------+
+| body row 1 | column 2   | column 3  | body row 1 | column 3  |
++------------+------------+-----------+------------+-----------+
+| body row 1 | column 2   | column 3  | body row 1 | column 3  |
++------------+------------+-----------+------------+-----------+
+| body row 1 | column 2   | column 3  | body row 1 | column 3  |
++------------+------------+-----------+------------+-----------+
+
+
+
+
+テーブル、表 （その２）
+==============================
+
+（widthsの始まりのカラムの位置を間違えるとアウト）（FORTRANのカードを思い出させる）
+
+.. list-table:: 
+    :widths: 5 10 10
+
+    * - ---
+      - 111
+      - 222
+    * - AAA
+      -         
+      - 
+
+
+.. _making_slide_w_comments:
+
+.. list-table:: パワポ、スライドの内容
+
+    * - Nr
+      - タイトル
+      - 内容
+    * - 1 (西暦年)
+      - 要約、キーワード。一行 
+      - |（複数行）
+        | 注目点、コメント、覚書、 
+        |［写真番号］、参考文献
+
+
+
+.. list-table:: 表のテンプレート
+    :header-rows: 1
+    :widths: 5 10 10 10
+
+
+    * - ---
+      - 111
+      - 222
+      - 333
+    * - AAA
+      -         
+      - 
+      - 
+    * - BBB
+      - 
+      - 
+      - 
+    * - CCC
+      - 
+      - 
+      - 
+
+
+.. csv-table:: CSVでテーブル作ります
+   :header: "Name", "Age", "Country"
+   
+   "John Doe", 25, "USA"
+   "Jane Smith", 30, "Canada"
+   "Tom Johnson", 28, "UK"
+
+
+
+table に image を貼り付けることもできる。
+
+.. list-table:: ロゴの比較
+   :widths: 15 10
+   :header-rows: 1
+
+   * - 画像
+     - 解説
+   * - .. image:: ../img/sphinx.png
+          :scale: 40%
+     - Sphinx
+   * - .. image:: ../img/python.png
+          :scale: 40%
+     - Python
+
+
+.. admonition:: 注意
+
+   これは重要な情報の注意事項です。
+
+.. admonition:: 第3回理事会便り      
+      本件自転車ラックのリニューアルについては
+
+
+
+.. code-block:: python
+
+   def main():
+
+
+
+
+* `.. toctree::` の書き方
+
+(以下は、コードブロックで.. toctree::の書き方の例を示している)
+
+.. code-block:: rst
+
+    サンプルドキュメント
+    ====================
+
+    Contents:  <== directiveにはなってない
+
+    .. toctree::
+        :maxdepth: 2
+        :numbered:
+        :glob: 
+
+        report/*
+
+
+    Indices and tables
+    ==================
+
+    * :ref:`genindex`
+    * :ref:`modindex`
+    * :ref:`search`
+
+    上記のように書く
+
+
+* 6 目次を作る
+
+.. contents:: Table of Contents
+   :depth: 1
+   :local:
+   :backlinks: none   #entry
+
+* 7 toctree
+     OBS! toctreeは、Previewでは表示できない （{221129}の時点）
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   index_sub_chapter1
+   index_sub_chapter2
+
+
+
+
+---------------------------
+figureを参照するときは
+---------------------------
+
+
+* ドキュメント内の自由な位置にクロスリファレンスを作成
+  :ref:
+  標準のreSTのラベルを使用して、
+  ドキュメント内の自由な位置にクロスリファレンスを作成する
+  こともできます。
+  
+  このラベルがきちんと動作するためには、ドキュメント全体の中で重複したラベルを使用することはできません。ラベルはユニークである必要があります。
+  
+  ラベルを参照する方法は２つあります:
+
+  If you place a label directly before a section title, you can reference to it with :ref:`label-name`. For example:
+
+.. _my-reference-label:
+
+Section to cross-reference
+--------------------------
+
+This is the text of the section.
+
+It refers to the section itself, see :ref:`my-reference-label`.
+:ref: ロールはセクションへのリンクを作成します。リンクのタイトルは "クロスリファレンスのセクション" になります。この機能はセクションと参照が異なるソースファイルにあるときに動作します。
+
+
+（以下は、組で動いている。。。。。。ちょっと分かりにくいなあ）
+Automatic labels also work with figures. For example:
+
+.. _my-figure:
+
+.. figure:: whateverfileName.png
+
+   Figure caption
+
+In this case, a reference :ref:`my-figure` would insert a reference to the figure with link text "Figure caption".
+
+table ディレクティブを使用して、キャプションを明示しているテーブルに対しても、同様の働きをします。
+
+セクションタイトルの前にないラベルに対しても参照することはできますが、タイトルを明示する必要があります。この場合には :ref:`リンクラベル <ラベル名>` という文法を使用します。
+
+https://coderefinery.github.io/sphinx-lesson/figures/
+
+In ReST, 図に枠を入れるには
+
+.. figure:: img/sample-image.png
+   :class: with-border
+
+   This is the caption.
+
+imageはtableなどと組み合わせることもできる。
+
+.. list-table:: ロゴの比較
+   :widths: 15 10
+   :header-rows: 1
+
+   * - 画像
+     - 解説
+   * - .. image:: ../img/sphinx.png
+          :scale: 40%
+     - Sphinx
+   * - .. image:: ../img/python.png
+          :scale: 40%
+     - Python
+
+
+* 6
+
+.. image:: ../img/sphinx.png
+   :scale: 40%
+   :height: 100px
+   :width: 200px
+   :align: left
+
+
+
+
+chatGPT, Sphinxで、別のファイルにあるラベルを参照する場合 {230429}
+====================================================================
+
+{230429}
+
+次のようにファイル名を指定することができます。
+
+相対パスを使用する
+相対パスを使用して、ラベルが定義されたファイルまでのパスを指定することができます。
+
+たとえば、以下のようなディレクトリ構造があるとします。
+
+.. code-block:: 
+
+    docs/
+        index.rst
+        chapter1/
+            intro.rst
+            main.rst
+        chapter2/
+            intro.rst
+            main.rst
+
+ここで、chapter1/intro.rst内のラベルを、chapter2/main.rstから参照するには、以下のようにします。
+
+:ref:`chapter1/intro-label`
+
+絶対パスを使用する
+
+絶対パスを使用して、ラベルが定義されたファイルのパスを指定することもできます。
+
+たとえば、以下のように、**ドキュメントルートからのパス** を使用することができます。
+
+:ref:`/chapter1/intro.rst#intro-label`
+
+ここで、intro-labelはchapter1/intro.rst内で定義されたラベルの名前です。
+
+Pythonのimport文を使用する
+
+Sphinxでは、Pythonのimport文を使用して、別のファイル内のラベルを参照することもできます。
+
+たとえば、以下のようにします。
+
+:ref:`intro-label <chapter1.intro-label>`
+
+ここで、chapter1.intro-labelは、chapter1/intro.rst内で定義されたラベルの名前です。
+
+これらの方法はいずれも、別のファイル内で定義されたラベルを参照するための方法であり、目的に応じて選択することができます。
+
+
+
+
+索引、モジュール索引、検索ページ（Indices and tables）
+=========================================================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+
+
+注釈を書く
+
+admonition
+--------------
+
+.. note:: This is a note admonition.
+   This is the second line of the first paragraph.
+
+   - The note contains all indented body elements
+     following.
+   - It includes this bullet list.
+
+.. note:: Directive Types:
+   - "attention", "caution", "danger", "error", "hint", "important", "note", "tip", "warning"
+   Doctree Elements:
+   - attention, caution , danger, error, hint, important, note, tip, warning
+   Directive Arguments:
